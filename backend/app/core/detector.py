@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import base64
 from .preprocessor import Preprocessor
 from .segmenter import Segmenter
 from .feature_extractor import FeatureExtractor
@@ -12,7 +13,7 @@ class Detector:
         self.feature_extractor = FeatureExtractor()
         self.classifier = Classifier()
 
-    def detect(self, image: np.ndarray) -> dict:
+    def detect(self, image: np.ndarray, return_image: bool = True) -> dict:
         """
         Pipeline completo: preprocesamiento, segmentación, extracción y clasificación.
         """
@@ -32,16 +33,30 @@ class Detector:
         # 4. Clasificación
         label = self.classifier.classify_by_ratio(features["ratio"])
         
-        # 5. Dibujar resultados (opcional, para depuración)
+        # 5. Dibujar resultados (para depuración y visualización)
         result_img = img_cropped.copy()
         x, y, w, h = features["bbox"]
-        color = (0, 255, 0) if label == "TELEVISION / MONITOR" else (255, 255, 0) if label == "LAPTOP / PORTATIL" else (0, 165, 255)
+        
+        # Colores por categoría
+        if label == "TELEVISION / MONITOR":
+            color = (0, 255, 0)  # Verde
+        elif label == "LAPTOP / PORTATIL":
+            color = (255, 255, 0)  # Cyan
+        else:  # PC DESKTOP (TORRE) o DESCONOCIDO
+            color = (0, 165, 255)  # Naranja
+            
         cv2.rectangle(result_img, (x, y), (x+w, y+h), color, 4)
         cv2.putText(result_img, f"{label} (ratio: {features['ratio']})", (x, y-10),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0,0,0), 2)
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 0), 2)
+        
+        # 6. Codificar imagen a Base64 para enviarla por JSON
+        image_base64 = None
+        if return_image:
+            _, buffer = cv2.imencode('.jpg', result_img)
+            image_base64 = base64.b64encode(buffer).decode('utf-8')
         
         return {
             "classification": label,
             "features": features,
-            "image_with_bbox": result_img.tolist()  # Solo si necesitas devolver la imagen codificada
+            "image_base64": image_base64  # Imagen en Base64
         }

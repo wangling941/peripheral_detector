@@ -61,3 +61,6 @@ htmlcov/
 
 # Notebooks con datos (opcional)
 notebooks/.ipynb_checkpoints/
+
+#Documentos
+docs/
