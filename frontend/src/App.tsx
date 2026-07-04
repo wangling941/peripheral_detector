@@ -14,13 +14,6 @@ import { ResultDisplay } from "./components/ResultDisplay/ResultDisplay";
 import { useDetection } from "./hooks/useDetection";
 import styles from "./App.module.css";
 
-// Declarar process para evitar error de TypeScript
-declare const process: {
-  env: {
-    REACT_APP_API_URL?: string;
-  };
-};
-
 const App: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const { detect, loading, result, error } = useDetection();
@@ -44,12 +37,8 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    if (result) {
-      console.log("✅ Detection result:", result);
-    }
-    if (error) {
-      console.error("❌ Detection error:", error);
-    }
+    if (result) console.log("✅ Detection result:", result);
+    if (error) console.error("❌ Detection error:", error);
   }, [result, error]);
 
   return (
