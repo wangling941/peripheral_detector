@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Typography,
@@ -8,46 +8,77 @@ import {
   Alert,
   CircularProgress,
 } from "@mui/material";
-import { CameraCapture } from "./components/CameraCapture";
-import { FileUpload } from "./components/FileUpload";
-import { ResultDisplay } from "./components/ResultDisplay";
+import { CameraCapture } from "./components/CameraCapture/CameraCapture";
+import { FileUpload } from "./components/FileUpload/FileUpload";
+import { ResultDisplay } from "./components/ResultDisplay/ResultDisplay";
 import { useDetection } from "./hooks/useDetection";
+import styles from "./App.module.css";
+
+// Declarar process para evitar error de TypeScript
+declare const process: {
+  env: {
+    REACT_APP_API_URL?: string;
+  };
+};
 
 const App: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const { detect, loading, result, error } = useDetection();
 
+  useEffect(() => {
+    console.log("🟢 App component mounted");
+    console.log(
+      "🔍 API URL:",
+      process.env.REACT_APP_API_URL || "http://localhost:8000",
+    );
+  }, []);
+
   const handleCapture = (file: File) => {
+    console.log("📸 Captured file:", file.name, "size:", file.size);
     detect(file);
   };
 
   const handleUpload = (file: File) => {
+    console.log("📁 Uploaded file:", file.name, "size:", file.size);
     detect(file);
   };
 
+  useEffect(() => {
+    if (result) {
+      console.log("✅ Detection result:", result);
+    }
+    if (error) {
+      console.error("❌ Detection error:", error);
+    }
+  }, [result, error]);
+
   return (
-    <Container maxWidth="md" sx={{ py: 4 }}>
-      <Typography variant="h4" align="center" gutterBottom>
+    <Container maxWidth="md" className={styles.appContainer}>
+      <Typography
+        variant="h4"
+        align="center"
+        gutterBottom
+        className={styles.title}
+      >
         🖥️ Detector de Periféricos
       </Typography>
       <Typography
         variant="subtitle1"
         align="center"
-        color="textSecondary"
-        gutterBottom
+        className={styles.subtitle}
       >
         Sube una imagen o usa la cámara para identificar monitores, laptops o
         torres de PC
       </Typography>
 
-      <Box sx={{ borderBottom: 1, borderColor: "divider", mt: 4 }}>
+      <Box className={styles.tabsContainer}>
         <Tabs value={tabValue} onChange={(_, v) => setTabValue(v)} centered>
           <Tab label="📸 Cámara" />
           <Tab label="📁 Subir imagen" />
         </Tabs>
       </Box>
 
-      <Box sx={{ mt: 3 }}>
+      <Box className={styles.contentBox}>
         {tabValue === 0 && (
           <CameraCapture onCapture={handleCapture} loading={loading} />
         )}
@@ -57,17 +88,15 @@ const App: React.FC = () => {
       </Box>
 
       {error && (
-        <Alert severity="error" sx={{ mt: 3 }}>
+        <Alert severity="error" className={styles.errorAlert}>
           {error}
         </Alert>
       )}
 
       {loading && (
-        <Box display="flex" justifyContent="center" mt={4}>
+        <Box className={styles.loadingBox}>
           <CircularProgress />
-          <Typography variant="body1" sx={{ ml: 2 }}>
-            Procesando imagen...
-          </Typography>
+          <Typography variant="body1">Procesando imagen...</Typography>
         </Box>
       )}
 

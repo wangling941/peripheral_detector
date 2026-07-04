@@ -1,0 +1,61 @@
+.resultContainer {
+  margin-top: 32px;
+}
+
+.resultCard {
+  padding: 16px;
+}
+
+.resultTitle {
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.classificationRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.metricsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.metricCard {
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background-color: #fafafa;
+}
+
+.metricLabel {
+  font-size: 0.75rem;
+  color: #78909c;
+}
+
+.metricValue {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.imageContainer {
+  margin-top: 16px;
+}
+
+.imageLabel {
+  font-size: 0.875rem;
+  color: #78909c;
+  margin-bottom: 8px;
+}
+
+.resultImage {
+  width: 100%;
+  max-height: 400px;
+  object-fit: contain;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+}

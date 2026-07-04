@@ -1,0 +1,17 @@
+.uploadContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.uploadButton {
+  width: 100%;
+  padding: 16px;
+}
+
+.fileInfo {
+  color: #78909c;
+  font-size: 0.875rem;
+}

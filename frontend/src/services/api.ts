@@ -1,6 +1,5 @@
 import axios from "axios";
 
-// Declarar process para evitar error de TypeScript
 declare const process: {
   env: {
     REACT_APP_API_URL?: string;
@@ -8,6 +7,7 @@ declare const process: {
 };
 
 const API_BASE_URL = process.env.REACT_APP_API_URL || "http://localhost:8000";
+console.log("🌐 API_BASE_URL:", API_BASE_URL);
 
 export interface DetectionResult {
   classification: string;
@@ -24,18 +24,24 @@ export interface DetectionResult {
 export const detectPeripheral = async (
   file: File,
 ): Promise<DetectionResult> => {
+  console.log("📡 detectPeripheral() called with file:", file.name);
   const formData = new FormData();
   formData.append("file", file);
 
-  const response = await axios.post<DetectionResult>(
-    `${API_BASE_URL}/api/v1/detect`,
-    formData,
-    {
-      headers: {
-        "Content-Type": "multipart/form-data",
+  try {
+    const response = await axios.post<DetectionResult>(
+      `${API_BASE_URL}/api/v1/detect`,
+      formData,
+      {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
       },
-    },
-  );
-
-  return response.data;
+    );
+    console.log("✅ API response status:", response.status);
+    return response.data;
+  } catch (error) {
+    console.error("❌ API request failed:", error);
+    throw error;
+  }
 };

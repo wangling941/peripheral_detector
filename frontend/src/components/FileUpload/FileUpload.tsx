@@ -1,6 +1,7 @@
-import React, { useRef } from "react";
-import { Button, Box, Typography } from "@mui/material";
+import React, { useRef, useEffect } from "react";
+import { Button, Typography } from "@mui/material";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
+import styles from "./FileUpload.module.css";
 
 interface FileUploadProps {
   onUpload: (file: File) => void;
@@ -13,15 +14,22 @@ export const FileUpload: React.FC<FileUploadProps> = ({
 }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
+  useEffect(() => {
+    console.log("📁 FileUpload component mounted");
+  }, []);
+
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
+      console.log("📁 File selected:", file.name, "size:", file.size);
       onUpload(file);
+    } else {
+      console.warn("⚠️ No file selected");
     }
   };
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
+    <div className={styles.uploadContainer}>
       <input
         type="file"
         accept="image/*"
@@ -32,16 +40,19 @@ export const FileUpload: React.FC<FileUploadProps> = ({
       <Button
         variant="outlined"
         startIcon={<CloudUploadIcon />}
-        onClick={() => fileInputRef.current?.click()}
+        onClick={() => {
+          console.log("🖱️ Upload button clicked");
+          fileInputRef.current?.click();
+        }}
         disabled={loading}
         fullWidth
-        sx={{ py: 2 }}
+        className={styles.uploadButton}
       >
         {loading ? "Procesando..." : "📁 Seleccionar imagen"}
       </Button>
-      <Typography variant="caption" color="textSecondary">
+      <Typography variant="caption" className={styles.fileInfo}>
         Formatos soportados: JPG, PNG, BMP
       </Typography>
-    </Box>
+    </div>
   );
 };

@@ -1,6 +1,7 @@
-import React, { useRef } from "react"; // eliminar useState
+import React, { useRef, useEffect } from "react";
 import Webcam from "react-webcam";
-import { Button, Box, CircularProgress } from "@mui/material";
+import { Button, CircularProgress } from "@mui/material";
+import styles from "./CameraCapture.module.css";
 
 interface CameraCaptureProps {
   onCapture: (file: File) => void;
@@ -13,13 +14,20 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
 }) => {
   const webcamRef = useRef<Webcam>(null);
 
+  useEffect(() => {
+    console.log("📷 CameraCapture component mounted");
+  }, []);
+
   const capture = () => {
+    console.log("📸 Capture button clicked");
     const imageSrc = webcamRef.current?.getScreenshot();
     if (imageSrc) {
-      // Convertir base64 a File
+      console.log("✅ Image captured, size:", imageSrc.length);
       const blob = dataURLtoBlob(imageSrc);
       const file = new File([blob], "capture.jpg", { type: "image/jpeg" });
       onCapture(file);
+    } else {
+      console.warn("⚠️ No image captured");
     }
   };
 
@@ -36,12 +44,13 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
   };
 
   return (
-    <Box display="flex" flexDirection="column" alignItems="center" gap={2}>
+    <div className={styles.captureContainer}>
       <Webcam
         audio={false}
         ref={webcamRef}
         screenshotFormat="image/jpeg"
         width="100%"
+        className={styles.webcam}
         videoConstraints={{
           facingMode: "environment",
         }}
@@ -52,9 +61,10 @@ export const CameraCapture: React.FC<CameraCaptureProps> = ({
         onClick={capture}
         disabled={loading}
         fullWidth
+        className={styles.captureButton}
       >
         {loading ? <CircularProgress size={24} /> : "📸 Capturar imagen"}
       </Button>
-    </Box>
+    </div>
   );
 };
