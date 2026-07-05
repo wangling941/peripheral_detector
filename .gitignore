@@ -62,5 +62,14 @@ htmlcov/
 # Notebooks con datos (opcional)
 notebooks/.ipynb_checkpoints/
 
-#Documentos
-docs/
+
+# Data y modelos (grandes)
+data/raw/
+data/processed/
+data/train/
+models/deep_learning/
+models/checkpoints/
+*.h5
+*.pt
+*.pth
+*.onnx
