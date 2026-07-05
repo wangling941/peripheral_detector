@@ -1,17 +1,15 @@
-# 🖥️ Peripheral Detector - Lima 2026
-
 <p align="center">
   <img src="frontend/src/assets/logo.svg" alt="Logo Peripheral Detector" width="120">
 </p>
 
-<h1 align="center">🧠 Detector de Periféricos</h1>
+<h1 align="center">🧠 Detector de TI</h1>
 <p align="center">
   <strong>Algoritmo interactivo basado en segmentación cromática para la detección y categorización automática de hardware informático</strong>
 </p>
 
 <p align="center">
   <img src="https://img.shields.io/badge/Estado-Desarrollo%20Activo-blue" alt="Estado: Desarrollo Activo">
-  <img src="https://img.shields.io/badge/Versión-2.0.0-blue" alt="Versión 2.0.0">
+  <img src="https://img.shields.io/badge/Versión-1.0.0-blue" alt="Versión 1.0.0">
   <img src="https://img.shields.io/badge/Licencia-MIT-green" alt="Licencia MIT">
 </p>
 
@@ -123,10 +121,11 @@ cd ../frontend
 npm install
 ```
 
-```bash
-# Preparar el Dataset de Imágenes (Entrenamiento)
+### **Preparar el Dataset de Imágenes (Entrenamiento)**
+
 El sistema incluye scripts para descargar imágenes de periféricos desde DuckDuckGo y procesarlas para el entrenamiento del modelo.
-```
+
+### **Iniciar la Aplicación**
 
 ### **6. Desde la raíz del proyecto**
 
@@ -134,13 +133,15 @@ El sistema incluye scripts para descargar imágenes de periféricos desde DuckDu
 python scripts/download_images.py # Descarga 300 imágenes por categoría
 python scripts/preprocess_dataset.py # Redimensiona y genera anotaciones
 python scripts/extract_features.py # Extrae características (Hu, color, etc.)
-python scripts/train_ml_model.py # Entrena el modelo Random Forest 5. Iniciar la Aplicación
+python scripts/train_ml_model.py # Entrena el modelo Random Forest
 
 ```
 
 ### **7. Iniciar el backend (desde /backend)**
 
 ```bash
+cd backend
+.\venv\Scripts\Activate.ps1
 uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 ```
 
@@ -148,15 +149,17 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 
 ```bash
 npm start
-La aplicación estará disponible en: http://localhost:3000
 ```
+
+La aplicación estará disponible en: http://localhost:3000
 
 ### **🏗️ Arquitectura del Proyecto**
 
 El proyecto sigue una arquitectura limpia y modular, separando claramente las responsabilidades entre el backend, el frontend y los scripts de entrenamiento.
 
+### ** Backend (FastAPI + OpenCV)**
+
 ```bash
-# Backend (FastAPI + OpenCV)
 backend/
 ├── app/
 │ ├── api/ # Rutas y controladores de la API
@@ -173,9 +176,9 @@ backend/
 └── requirements.txt # Dependencias Python
 ```
 
-```bash
-# Frontend (React + Material-UI)
+### **Frontend (React + Material-UI)**
 
+```bash
 frontend/src/
 ├── components/ # Componentes reutilizables
 │ ├── CameraCapture/ # Captura desde cámara
@@ -190,8 +193,9 @@ frontend/src/
 └── index.tsx # Punto de entrada
 ```
 
+### ** Scripts de Entrenamiento y Preparación de Datos**
+
 ```bash
-# Scripts de Entrenamiento y Preparación de Datos
 
 scripts/
 ├── download_images.py # Descarga de imágenes desde DuckDuckGo
@@ -251,7 +255,7 @@ Si este proyecto te resultó útil o te sirvió como referencia, considera darle
 
 ### **👨‍💻 Equipo de Desarrollo**
 
-<p align="center"> <img src="frontend/src/assets/team/wangling.jpg" alt="WangLing" width="100" style="border-radius: 50%;"> <br> <strong>WangLing</strong> <br> <em>Desarrollador Full-Stack | Ingeniería de Sistemas</em> </p><p align="center"> <a href="https://github.com/wangling941"> <img src="https://img.shields.io/badge/GitHub-wangling941-181717?style=for-the-badge&logo=github" alt="GitHub"> </a> &nbsp; <a href="mailto:kevinvillegas.dev@gmail.com"> <img src="https://img.shields.io/badge/Email-Contacto-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"> </a> &nbsp; <a href="https://www.linkedin.com/in/kevin-villegas-solis-7b0038366/"> <img src="https://img.shields.io/badge/LinkedIn-Kevin%20Villegas%20Solis-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"> </a> </p>
+<p align="center"> <img src="frontend\assets\team\wangling.jpg" alt="WangLing" width="100" style="border-radius: 50%;"> <br> <strong>WangLing</strong> <br> <em>Desarrollador Full-Stack | Ingeniería de Sistemas</em> </p><p align="center"> <a href="https://github.com/wangling941"> <img src="https://img.shields.io/badge/GitHub-wangling941-181717?style=for-the-badge&logo=github" alt="GitHub"> </a> &nbsp; <a href="mailto:kevinvillegas.dev@gmail.com"> <img src="https://img.shields.io/badge/Email-Contacto-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"> </a> &nbsp; <a href="https://www.linkedin.com/in/kevin-villegas-solis-7b0038366/"> <img src="https://img.shields.io/badge/LinkedIn-Kevin%20Villegas%20Solis-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"> </a> </p>
 
 ### **📄 Licencia**
 
