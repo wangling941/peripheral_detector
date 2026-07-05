@@ -11,9 +11,7 @@ def preprocess_image(img_path, output_path, target_size=(600, 600)):
     img = cv2.imread(img_path)
     if img is None:
         return False
-    # Redimensionar manteniendo proporción o forzando
     img = cv2.resize(img, target_size)
-    # (Opcional) aplicar autocrop similar al del backend
     cv2.imwrite(output_path, img)
     return True
 
@@ -33,7 +31,6 @@ def main():
                     labels.append({'filename': f"{label_dir}/{img_file}", 'label': label_dir})
                     print(f"Procesado: {img_file} -> {label_dir}")
 
-    # Guardar anotaciones
     df = pd.DataFrame(labels)
     os.makedirs(os.path.dirname(ANNOTATIONS_FILE), exist_ok=True)
     df.to_csv(ANNOTATIONS_FILE, index=False)
