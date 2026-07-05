@@ -1,24 +1,58 @@
 .appContainer {
-  background-color: white;
-  border-radius: 16px;
-  padding: 24px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  min-height: 500px;
+  padding: 16px;
+  min-height: 100vh;
+  transition: all 0.3s ease;
+}
+
+/* Tema cyberpunk - se aplica desde el ThemeContext, pero añadimos sobreescrituras */
+:global(.cyberpunk) .appContainer {
+  background: transparent;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.logoIcon {
+  font-size: 3rem;
+  filter: drop-shadow(0 0 20px rgba(156, 39, 176, 0.6));
 }
 
 .title {
   font-weight: 700;
-  color: #1a237e;
+  letter-spacing: 0.1em;
+  background: linear-gradient(135deg, #9c27b0, #00e5ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: none;
+  animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 5px rgba(156, 39, 176, 0.3));
+  }
+  to {
+    filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.6));
+  }
 }
 
 .subtitle {
-  color: #546e7a;
   margin-top: 8px;
+  opacity: 0.8;
 }
 
 .tabsContainer {
   margin-top: 24px;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .contentBox {
@@ -35,4 +69,14 @@
 
 .errorAlert {
   margin-top: 24px;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .logoIcon {
+    font-size: 2.4rem;
+  }
+  .title {
+    font-size: 1.8rem !important;
+  }
 }

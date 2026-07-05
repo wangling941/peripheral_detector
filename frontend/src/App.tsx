@@ -11,54 +11,38 @@ import {
 import { CameraCapture } from "./components/CameraCapture/CameraCapture";
 import { FileUpload } from "./components/FileUpload/FileUpload";
 import { ResultDisplay } from "./components/ResultDisplay/ResultDisplay";
+import { ThemeToggle } from "./components/ThemeToggle/ThemeToggle";
 import { useDetection } from "./hooks/useDetection";
+import { useThemeContext } from "./context/ThemeContext";
 import styles from "./App.module.css";
 
 const App: React.FC = () => {
   const [tabValue, setTabValue] = useState(0);
   const { detect, loading, result, error } = useDetection();
+  const { mode } = useThemeContext();
 
   useEffect(() => {
-    console.log("🟢 App component mounted");
-    console.log(
-      "🔍 API URL:",
-      process.env.REACT_APP_API_URL || "http://localhost:8000",
-    );
-  }, []);
+    console.log("🟢 App mounted, mode:", mode);
+  }, [mode]);
 
-  const handleCapture = (file: File) => {
-    console.log("📸 Captured file:", file.name, "size:", file.size);
-    detect(file);
-  };
-
-  const handleUpload = (file: File) => {
-    console.log("📁 Uploaded file:", file.name, "size:", file.size);
-    detect(file);
-  };
-
-  useEffect(() => {
-    if (result) console.log("✅ Detection result:", result);
-    if (error) console.error("❌ Detection error:", error);
-  }, [result, error]);
+  const handleCapture = (file: File) => detect(file);
+  const handleUpload = (file: File) => detect(file);
 
   return (
     <Container maxWidth="md" className={styles.appContainer}>
-      <Typography
-        variant="h4"
-        align="center"
-        gutterBottom
-        className={styles.title}
-      >
-        🖥️ Detector de Periféricos
-      </Typography>
-      <Typography
-        variant="subtitle1"
-        align="center"
-        className={styles.subtitle}
-      >
-        Sube una imagen o usa la cámara para identificar monitores, laptops o
-        torres de PC
-      </Typography>
+      <ThemeToggle />
+      <div className={styles.header}>
+        <div className={styles.logoContainer}>
+          <span className={styles.logoIcon}>🖥️</span>
+          <Typography variant="h4" className={styles.title}>
+            Detector de Periféricos
+          </Typography>
+        </div>
+        <Typography variant="subtitle1" className={styles.subtitle}>
+          Sube una imagen o usa la cámara para identificar monitores, laptops o
+          torres de PC
+        </Typography>
+      </div>
 
       <Box className={styles.tabsContainer}>
         <Tabs value={tabValue} onChange={(_, v) => setTabValue(v)} centered>
