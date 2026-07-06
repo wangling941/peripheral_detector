@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="frontend/src/assets/logo.svg" alt="Logo Peripheral Detector" width="120">
+  <img src="frontend\src\assets\logo\logoPeriphVision.png" alt="Logo Peripheral Detector" width="120">
 </p>
 
-<h1 align="center">🧠 Detector de TI</h1>
+<h1 align="center">PeriphVision</h1>
 <p align="center">
   <strong>Algoritmo interactivo basado en segmentación cromática para la detección y categorización automática de hardware informático</strong>
 </p>
@@ -93,7 +93,7 @@ cd peripheral_detector
 
 ### **2. Configurar el Backend**
 
-# Crear y activar entorno virtual
+### **Crear y activar entorno virtual**
 
 ```bash
 cd backend
@@ -157,7 +157,7 @@ La aplicación estará disponible en: http://localhost:3000
 
 El proyecto sigue una arquitectura limpia y modular, separando claramente las responsabilidades entre el backend, el frontend y los scripts de entrenamiento.
 
-### ** Backend (FastAPI + OpenCV)**
+### **Backend (FastAPI + OpenCV)**
 
 ```bash
 backend/
@@ -193,7 +193,7 @@ frontend/src/
 └── index.tsx # Punto de entrada
 ```
 
-### ** Scripts de Entrenamiento y Preparación de Datos**
+### **Scripts de Entrenamiento y Preparación de Datos**
 
 ```bash
 
@@ -207,21 +207,25 @@ scripts/
 ### **📸 Capturas de Pantalla**
 
 <div align="center">
+Mockup del Proyecto
+
+<img src="frontend\src\assets\mockup\mockup.png" width="800" alt="MockUp del proyecto">
+
 Interfaz Principal (Tema Cyberpunk)
 
-<img src="frontend/src/assets/screenshots/cyberpunk-theme.png" width="800" alt="Cyberpunk Theme">
-
-Resultado de Detección
-
-<img src="frontend/src/assets/screenshots/detection-result.png" width="800" alt="Detection Result">
+<img src="frontend/src/assets/screenshots/Detector_de_TI.png" width="800" alt="Cyberpunk Theme">
 
 Subida de Imágenes
 
-<img src="frontend/src/assets/screenshots/upload-panel.png" width="800" alt="Upload Panel">
+<img src="frontend/src/assets/screenshots/Subir_imagen.png" width="800" alt="Upload Panel">
 
-Tema Claro
+Capturar Imagen
 
-<img src="frontend/src/assets/screenshots/light-theme.png" width="800" alt="Light Theme">
+<img src="frontend/src/assets/screenshots/Capturar_imagen.png" width="800" alt="Capturar Imagen">
+
+Resultado de Detección
+
+<img src="frontend/src/assets/screenshots/Seleccion_imagen.png" width="800" alt="Detection Result">
 
 </div>
 
@@ -255,7 +259,7 @@ Si este proyecto te resultó útil o te sirvió como referencia, considera darle
 
 ### **👨‍💻 Equipo de Desarrollo**
 
-<p align="center"> <img src="frontend\assets\team\wangling.jpg" alt="WangLing" width="100" style="border-radius: 50%;"> <br> <strong>WangLing</strong> <br> <em>Desarrollador Full-Stack | Ingeniería de Sistemas</em> </p><p align="center"> <a href="https://github.com/wangling941"> <img src="https://img.shields.io/badge/GitHub-wangling941-181717?style=for-the-badge&logo=github" alt="GitHub"> </a> &nbsp; <a href="mailto:kevinvillegas.dev@gmail.com"> <img src="https://img.shields.io/badge/Email-Contacto-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"> </a> &nbsp; <a href="https://www.linkedin.com/in/kevin-villegas-solis-7b0038366/"> <img src="https://img.shields.io/badge/LinkedIn-Kevin%20Villegas%20Solis-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"> </a> </p>
+<p align="center"> <img src="frontend\src\assets\team\wangling.jpg" alt="WangLing" width="100" style="border-radius: 50%;"> <br> <strong>WangLing</strong> <br> <em>Desarrollador Full-Stack | Ingeniería de Sistemas</em> </p><p align="center"> <a href="https://github.com/wangling941"> <img src="https://img.shields.io/badge/GitHub-wangling941-181717?style=for-the-badge&logo=github" alt="GitHub"> </a> &nbsp; <a href="mailto:kevinvillegas.dev@gmail.com"> <img src="https://img.shields.io/badge/Email-Contacto-D14836?style=for-the-badge&logo=gmail&logoColor=white" alt="Email"> </a> &nbsp; <a href="https://www.linkedin.com/in/kevin-villegas-solis-7b0038366/"> <img src="https://img.shields.io/badge/LinkedIn-Kevin%20Villegas%20Solis-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" alt="LinkedIn"> </a> </p>
 
 ### **📄 Licencia**
 
