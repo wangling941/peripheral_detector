@@ -10,8 +10,14 @@
 }
 
 .header {
-  text-align: center;
-  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  margin-top: 35px;
+  margin-bottom: 30px;
 }
 
 .logoContainer {
@@ -25,17 +31,54 @@
   font-size: 3rem;
   filter: drop-shadow(0 0 20px rgba(156, 39, 176, 0.6));
 }
+.logo {
+  width: 170px;
 
+  height: auto;
+
+  margin-bottom: 18px;
+
+  transition: 0.3s;
+}
+.logo:hover {
+  transform: scale(1.05);
+}
 .title {
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  background: linear-gradient(135deg, #9c27b0, #00e5ff);
+  font-size: 3rem !important;
+
+  font-weight: 800 !important;
+
+  letter-spacing: 1px;
+
+  background: linear-gradient(90deg, #00c6ff, #2f80ed, #7b61ff);
+
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  text-shadow: none;
-  animation: glow 2s ease-in-out infinite alternate;
+
+  color: transparent;
+}
+.subtitle {
+  margin-top: 8px !important;
+
+  font-weight: 700 !important;
+
+  color: #c9d1d9;
+
+  letter-spacing: 4px;
+
+  text-transform: uppercase;
 }
 
+.description {
+  margin-top: 18px !important;
+
+  max-width: 700px;
+
+  text-align: center;
+
+  color: #9ca3af;
+
+  line-height: 1.8;
+}
 @keyframes glow {
   from {
     filter: drop-shadow(0 0 5px rgba(156, 39, 176, 0.3));
